@@ -1,0 +1,165 @@
+
+git init   　　　　　　ローカルリポジトリ作成
+ls -a .git/
+
+
+git add  "ファイル"    ファイルをステージングエリアに追加
+git add .　　　　　　全てのファイルをステージングエリアに追加
+
+git commit 　　　　　変更の記録
+git commit -v 　　　　何を変更したか確認できる
+git status 　　　　　  現在のcd状況の確認
+
+git log          　　　　            コマンドでリポジトリにコミットされた ログを確認する。
+git log --oneline 　　　           変更履歴を一行で表示する
+git log -p index.html 　            ファイルの差分を表示する
+git log -n "行数"
+git log --oneline -n "行数"       でも利用可能
+
+git log -p                                     何を変更したか確認できる
+git log -p "ファイル名"　            何を変更したか特定ファイルを確認できgit diff　　　　　　　　              変更差分を表示する　ステージとの差分
+git diff HEAD　　　                     ステージとコミットの差分
+git remote add orign "gitURL"　  リモートリポジトリの登録
+git push origin master 　             リモートリポジ   以外のブランチへ送信
+
+git rm "ファイル名"　　　　　    ファイル名も一緒に削除
+git rm -r  "ディレクトリ名"　　    ディレクトリも一緒に削除
+git rm --cached "ファイル名"　    ファイルを残す場合ls .gitignoreに追記忘れずに
+
+
+git checkout --ファイル名 or ディレクトリ名          これで完全にgitがローカル管理下に戻る
+git checkout —- .                       全変更を取り消す
+
+
+ステージした変更を取り消す
+git reset HEAD ファイル名　　　　　　　　　　git管理下に戻す場合
+git reset HEAD ディレクトリ名　　
+git reset HEAD . 　　　　　　　　　　　　　　全変更を取り消す　　　　　　
+
+
+git commit --amend​             直前のコミットをやり直す
+リモートリポジトリにpushしたコミットはやり直しはだめ
+
+リモートの詳細情報を確認
+git remote                  リモートしてるものを確認
+git remote -v               リモートで対応するURLを表示する
+git remote show <リモート名>
+git remote show origin 
+
+リモートを変更
+git remote rename 旧リモート名　新リモート名
+git remote rename tutorial new_tutorial
+削除
+git remote rm　リモート名
+git remote rm new_tutorial
+
+
+
+git fetch <リモート名>   　　　　リモートから情報を取得する（fetch） ローカルリポジトリに取ってくる
+git fetch origin             
+
+git merge origin master 　　　ワークツリーにファイルもしくはフォルダを取り込み
+
+
+
+git branch ブランチ名                   ブランチを新規作成 (ブランチを作成するだけで切り替えまでは行わない)
+git branch -a                         全てのブランチを表示
+git log --oneline --decorate         　全てのコミットを表示
+
+
+ブランチを切り替える
+git checkout 既存ブランチ名
+git checkout feature
+
+git checkout -b 新ブランチ名　　　　　　ブランチを新規作成して切り替える
+
+
+変更履歴をマージする
+git merge ブランチ名
+git merge リモート名もしくはブランチ名
+git merge origin/master
+
+—————————————————————————————————
+リモートから情報を取得してマージする
+git pull リモート名　ブランチ名
+git pull origin  master
+
+上記は省略可能
+git pull
+
+これは下記操作と同様
+git fetch origin master
+git merge origin master
+
+—————————————————————————————————
+
+ブランチを変更する
+git branch -m ブランチ名
+git branch -m new_branch
+
+
+ブランチを削除
+git branch -d ブランチ名
+git branch -d feature
+masterにマージされていない変更が残ってる場合削除しないよ
+
+強制削除する
+git branch -D ブランチ名
+git branch -a              ブランチのすべての情報を確認
+
+
+リベースで履歴を整えた形で変更を統合する
+git rebase ブランチ名
+
+・リベースの流れ
+masterでファイル編集
+git checkout feature
+featureでファイル編集
+git rebase master
+git checkout master
+git rebase master 
+
+
+git config —global merge.ff false 　　　　mergeをFast-forwardしない方法
+
+プルのリベース型
+git pull —rebase リモート名　ブランチ名
+git pull —rebase origin master
+マージコミットが残らないから、GitHubの内容を取得したいだけの時は —rebaseを使おう
+
+プルをリベース型に設定する
+git config —global pull.rebase true
+
+# masterブランチでgit pullする時だけ
+git config branch.master.rebase true
+
+
+
+commitを消す方法
+git reset HEAD^
+git push origin master -f
+
+
+
+
+
+---------------------------------------------
+.gitignore ファイルに指定
+書き方
+# #から始まる行はコメント
+#指定したファイルを除外
+index.html
+#ルートディレクトリを指定
+/room.html
+＃ディレクトリ以下を除外
+dir/
+---------------------------------------------
+
+エイリアスの付け方 入力が楽になる
+git config —global alias.ci commit         →      ci
+git config —global alias.st status         →      st
+git config —global alias.br branch         →      br
+git config —global alias.co checkout       →      co
+
+
+---------------------------------------------
