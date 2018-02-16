@@ -8,6 +8,8 @@ git add .　　　　　　全てのファイルをステージングエリア�
 
 git commit 　　　　　変更の記録
 git commit -v 　　　　何を変更したか確認できる
+git commit --allow-empty -m 'コメント' で空コミットでPR作れる。
+
 git status 　　　　　  現在のcd状況の確認
 
 git log          　　　　            コマンドでリポジトリにコミットされた ログを確認する。
@@ -49,6 +51,7 @@ git remote show origin
 リモートを変更
 git remote rename 旧リモート名　新リモート名
 git remote rename tutorial new_tutorial
+
 削除
 git remote rm　リモート名
 git remote rm new_tutorial
