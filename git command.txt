@@ -155,7 +155,15 @@ git stash apply --index
 git stash appy "stash name"
 git stash apply stash@{1}
 
+最新の作業を削除する
+git stash drop
 
+特定の作業を削除する
+git stash drop "stash name"
+git stash drop stash@{1}
+
+全ての作業を削除
+git stash clear
 
 
 
