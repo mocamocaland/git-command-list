@@ -133,14 +133,27 @@ git pull —rebase origin master
 プルをリベース型に設定する
 git config —global pull.rebase true
 
-# masterブランチでgit pullする時だけ
-git config branch.master.rebase true
 
 
 
 commitを消す方法
 git reset HEAD^
 git push origin master -f
+
+作業中の内容を一時避難
+git stash
+
+一時避難した内容の一覧を確認
+git stash list
+
+最新の作業を復元する
+git stash apply
+ステージの状況も復元する
+git stash apply --index
+
+特定の作業を復元する apply:適用
+git stash appy "stash name"
+git stash apply stash@{1}
 
 
 
